@@ -8,15 +8,19 @@
     verbosity = 'high'
 /
 &system
-    ibrav = 1
-    celldm(1) = 20
+    ibrav = 11
+    a           =  5.08553e+00
+    b           =  5.18019e+01
+    c           =  5.46004e+00
+!    cosac       = -3.74170e-01
     nat = 2
     ntyp = 2
-    ecutwfc = 100
+    ecutwfc = 30
     occupations = 'fixed'
     tot_charge = +1
     nspin = 2
     tot_magnetization = 1
+    nosym = .true.
 /
 &electrons
     diagonalization = 'david'

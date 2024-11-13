@@ -7,7 +7,7 @@
                                    current_k
   USE klist,                 ONLY : xk, nks, lgauss, igk_k, ngk
   USE fft_base,              ONLY : dffts, dfftp
-  USE cell_base,             ONLY : tpiba2, tpiba
+  USE cell_base,             ONLY : tpiba2, tpiba, bg
   USE gvecw,                 ONLY : ecutwfc
   USE gvect,                 ONLY : ngm, g
   USE io_global,             ONLY : stdout
@@ -49,12 +49,12 @@
   integer :: ik, ibnd, jbnd, kk, ii, jj, occ, nrxxs, nr1, nr2, nr3
   real(dp) :: tmp(3), emin, emax
   ! index for the cross product
-  integer :: ind(2,3)
+  integer :: ind(2,3),ipol
   
   !debug mpi 
   integer :: ierr, num_procs, rank, root, i, dd, comm_rank
   integer :: ibnd_start, ibnd_end
-  real :: partial_value, gathered_kp_berry(6)
+  real :: partial_value, gathered_kp_berry(6), bmod
 
   ind(:,1) = (/ 2, 3 /)
   ind(:,2) = (/ 3, 1 /)
@@ -201,6 +201,15 @@
   close(unit=iundudk1, status='keep')
   close(unit=iundudk2, status='keep')
   close(unit=iundudk3, status='keep')
+  do i =1,3
+   if (lambda_so(i) .ne. 0d0 .or. m_0(i) .ne. 0d0) ipol=i
+  enddo 
+  !test added
+  bmod = sqrt( sum(bg(1:3,ipol)**2.d0) )
+  orb_magn_LC = (/orb_magn_LC(1)*bg(ipol,1),orb_magn_LC(2)*bg(ipol,2), orb_magn_LC(3)*bg(ipol,3)/)/ bmod 
+  orb_magn_IC = (/orb_magn_IC(1)*bg(ipol,1),orb_magn_IC(2)*bg(ipol,2), orb_magn_IC(3)*bg(ipol,3)/)/bmod
+  berry_curvature = (/berry_curvature(1)*bg(ipol,1),berry_curvature(2)*bg(ipol,2), berry_curvature(3)*bg(ipol,3)/)/bmod
+
 
   orb_magn_tot = orb_magn_LC + orb_magn_IC + &
                  delta_M_bare + delta_M_dia + delta_M_para

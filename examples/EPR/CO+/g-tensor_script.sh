@@ -11,7 +11,7 @@ cat > ${NAME}_${DIR}.in << EOF
         diagonalization = 'david'
         verbosity = 'high'
         q_gipaw = 0.01
-        dudk_method = 'covariant'
+        dudk_method = 'singlepoint'
         diago_thr_init = 1d-4
         conv_threshold = 1d-8
         mixing_beta = 0.5
@@ -19,7 +19,7 @@ cat > ${NAME}_${DIR}.in << EOF
 /
 EOF
 
-mpirun -np 6 /home/sfioccola/Desktop/QE-CONVERSE/bin/qe-converse.x  < ${NAME}_${DIR}.in > ${NAME}_${DIR}.out
+mpirun -np 6 /home/sfioccola/Desktop/test_singlepoint/QE-CONVERSE/bin/qe-converse.x  < ${NAME}_${DIR}.in > ${NAME}_${DIR}.out
 echo ${NAME}_${DIR}
 
 done
