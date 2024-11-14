@@ -205,10 +205,10 @@
    if (lambda_so(i) .ne. 0d0 .or. m_0(i) .ne. 0d0) ipol=i
   enddo 
   !test added
-  bmod = sqrt( sum(bg(1:3,ipol)**2.d0) )
-  orb_magn_LC = (/orb_magn_LC(1)*bg(ipol,1),orb_magn_LC(2)*bg(ipol,2), orb_magn_LC(3)*bg(ipol,3)/)/ bmod 
-  orb_magn_IC = (/orb_magn_IC(1)*bg(ipol,1),orb_magn_IC(2)*bg(ipol,2), orb_magn_IC(3)*bg(ipol,3)/)/bmod
-  berry_curvature = (/berry_curvature(1)*bg(ipol,1),berry_curvature(2)*bg(ipol,2), berry_curvature(3)*bg(ipol,3)/)/bmod
+!  bmod = sqrt( sum(bg(1:3,ipol)**2.d0) )
+!  orb_magn_LC = (/orb_magn_LC(1)*bg(ipol,1),orb_magn_LC(2)*bg(ipol,2), orb_magn_LC(3)*bg(ipol,3)/)/ bmod 
+!  orb_magn_IC = (/orb_magn_IC(1)*bg(ipol,1),orb_magn_IC(2)*bg(ipol,2), orb_magn_IC(3)*bg(ipol,3)/)/bmod
+!  berry_curvature = (/berry_curvature(1)*bg(ipol,1),berry_curvature(2)*bg(ipol,2), berry_curvature(3)*bg(ipol,3)/)/bmod
 
 
   orb_magn_tot = orb_magn_LC + orb_magn_IC + &

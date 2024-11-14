@@ -8,11 +8,12 @@
     verbosity = 'high'
 /
 &system
-    ibrav = 11
+    ibrav = -12
+!    celldm(1) = 20
     a           =  5.08553e+00
-    b           =  5.18019e+01
+    b           =  1.18019e+01
     c           =  5.46004e+00
-!    cosac       = -3.74170e-01
+    cosac       = -3.74170e-01
     nat = 2
     ntyp = 2
     ecutwfc = 30
