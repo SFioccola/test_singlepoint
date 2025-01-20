@@ -574,8 +574,10 @@ SUBROUTINE find_nbnd_occ(ik, nbnd_occ, emin, emax)
   real(dp) :: small, xmax, fac, e_target
   integer :: ibnd
 
-  IF ( two_fermi_energies ) THEN
+  IF ( lgauss .or. ltetra ) THEN ! metallic case
+    IF ( two_fermi_energies ) THEN
      ef = (ef_up + ef_dw) / 2
+    ENDIF
   ENDIF
 
   if (lgauss) then ! metallic case
